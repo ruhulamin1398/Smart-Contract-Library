@@ -1,16 +1,16 @@
-// test/BurnableToken.test.js
+// test/BasicERC20BurnableToken.test.js
 
-const BurnableToken = artifacts.require("BurnableToken");
+const BasicERC20BurnableToken = artifacts.require("BasicERC20BurnableToken");
 const BN = require('bn.js');
 
-contract("BurnableToken", (accounts) => {
+contract("BasicERC20BurnableToken", (accounts) => {
   const [owner, addr1, ...addrs] = accounts;
   const initialSupply = new BN('1000').mul(new BN('10').pow(new BN('18'))); // 1000 * 10^18
 
   let token;
 
   beforeEach(async () => {
-    token = await BurnableToken.new(initialSupply);
+    token = await BasicERC20BurnableToken.new(initialSupply);
   });
  
   describe("Burn", () => {

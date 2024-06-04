@@ -1,11 +1,11 @@
-// contracts/BurnableToken.sol
+// contracts/BasicERC20BurnableToken.sol
 
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "./BasicERC20Token.sol";
 
-contract BurnableToken is BasicERC20Token {
+contract BasicERC20BurnableToken is BasicERC20Token {
 
     event Burn(address indexed burner, uint256 value);
 
