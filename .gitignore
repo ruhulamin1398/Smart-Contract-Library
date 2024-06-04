@@ -1,2 +1,6 @@
-/ERC20Basic/node_modues
-/ERC20-openzeppelin/node_modues
+/ERC20Basic/node_modules/
+/ERC20Basic/build/
+
+
+/ERC20-openzeppelin/node_modues/
+/ERC20-openzeppelin/build/
