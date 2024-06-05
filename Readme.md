@@ -10,3 +10,27 @@
 | `UpgradeableToken.sol`           | Uses a proxy pattern to upgrade contract logic while preserving state. | Proxy, Upgrade                                        | Ensure state is preserved across upgrades     | [solidity](/ERC20Basic/contracts/UpgradeableToken.sol) , [OpenZepplin](/ERC20-openzeppelin/contracts/BasicERC20Token.sol) |
 | `UpgradeableTokenV2.sol`         | Upgraded logic for the upgradeable token.               | Upgrade Logic                                         | Ensure correct state transition after upgrade | [solidity](/ERC20Basic/contracts/UpgradeableTokenV2.sol), [OpenZepplin](/ERC20-openzeppelin/contracts/BasicERC20Token.sol)  |
 | `SnapshotToken.sol`              | Allows taking snapshots of balances at specific points in time. | Snapshot                                              | Ensure correct snapshotting and querying      | [solidity](/ERC20Basic/contracts/SnapshotToken.sol), [OpenZepplin](/ERC20-openzeppelin/contracts/BasicERC20Token.sol)  |
+
+
+# Tokens
+
+### 1. Stacking Token
+
+Welcome to the project homepage! This project aims to provide a comprehensive solution for staking and unstaking tokens on the Ethereum blockchain. The core component of this project is the `StakingToken` contract, which allows users to stake their tokens, earn interest over time, and withdraw their staked tokens along with accrued interest. 
+
+#### Features:
+
+- **Staking**: Users can stake their tokens into the contract, locking them up for a specified period.
+- **Interest Calculation**: The contract calculates interest on staked tokens based on the Annual Percentage Yield (APY) provided by the user.
+- **Unstaking**: After the staking period ends, users can withdraw their staked tokens along with accrued interest.
+- **Pausing**: The contract owner has the ability to pause and unpause the contract, providing additional security and control.
+
+#### Test Coverage:
+
+Comprehensive tests have been implemented to ensure the functionality and reliability of the `StakingToken` contract. These tests cover various scenarios, including staking, unstaking, pausing, and unpausing operations.
+
+#### Get Started:
+
+To explore the project in detail and access the codebase, visit the project page [here](/Staking-token-contract/).
+
+Feel free to dive into the code, run the tests, and contribute to the project's development! If you have any questions or feedback, don't hesitate to reach out. Thank you for your interest in our project!
