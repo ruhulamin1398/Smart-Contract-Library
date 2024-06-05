@@ -26,7 +26,7 @@ Ensure token transfers are blocked when paused and allowed when unpaused.
 Ensure minting cannot exceed the cap.
 
 ###   Upgradeable Token:
-Uses a proxy pattern to allow the contract logic to be upgraded while preserving the state.
+[proxy](/ERC20Basic//contracts/Proxy.sol),    [Upgradeable Token](/ERC20Basic/contracts/UpgradeableToken.sol), [Upgradeable Token 2](/ERC20Basic//contracts/UpgradeableTokenV2.sol)  uses a proxy pattern to allow the contract logic to be upgraded while preserving the state.
 #### Tests: 
 Ensure state is preserved correctly across upgrades.
 
