@@ -9,7 +9,7 @@ contract MintableToken is BasicERC20Token {
 
     constructor(uint256 initialSupply) BasicERC20Token(initialSupply) {}
 
-    function mint(address _to, uint256 _value) public {
+    function mint(address _to, uint256 _value) public virtual {
         totalSupply += _value;
         balanceOf[_to] += _value;
         emit Mint(_to, _value);

@@ -4,7 +4,7 @@ const BasicERC20Token = artifacts.require("BasicERC20Token");
 const BN = require('bn.js');
 
 contract("BasicERC20Token", (accounts) => {
-    console.log("accounts :   " ,accounts   )
+    // console.log("accounts :   " ,accounts   )
   const [owner, addr1, addr2, ...addrs] = accounts;
   const initialSupply = new BN('1000').mul(new BN('10').pow(new BN('18'))); // 1000 * 10^18
 
@@ -17,8 +17,8 @@ contract("BasicERC20Token", (accounts) => {
   describe("Deployment", () => {
     it("Should set the right owner", async () => {
       const ownerBalance = await token.balanceOf(owner);
-      console.log("Owner Balance:", ownerBalance.toString());
-      console.log("Initial Supply:", initialSupply.toString());
+      // console.log("Owner Balance:", ownerBalance.toString());
+      // console.log("Initial Supply:", initialSupply.toString());
       assert(ownerBalance.eq(initialSupply), "Initial supply is not assigned to the owner");
     });
   });
