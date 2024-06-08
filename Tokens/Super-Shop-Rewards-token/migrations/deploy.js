@@ -1,5 +1,5 @@
-const ARCoin = artifacts.require("SuperShopRewards");
+const tkArtifects = artifacts.require("SuperShopRewards");
 
 module.exports = function (deployer) {
-  deployer.deploy(ARCoin,500);
+  deployer.deploy(tkArtifects,500);
 };

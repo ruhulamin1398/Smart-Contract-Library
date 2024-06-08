@@ -1,178 +1,57 @@
-# StakingToken Contract  
+# LoanManagementToken Contract
 
 ## Overview
 
-The `StakingToken` contract is an ERC20 token with staking functionality. It allows users to stake tokens and earn interest based on an annual percentage yield (APY). The contract also supports pausing functionality, allowing the owner to halt staking and unstaking operations temporarily.
+The `LoanManagementToken` contract is designed to facilitate loans with collateral management. Borrowers can take loans by providing collateral, repay the loans with interest, and owners can liquidate loans if collateral falls below a certain threshold. This contract inherits ERC20 functionality and includes additional features for managing loans and collateral.
 
 ## Contract Structure
 
 ### Inheritance
 
-The contract inherits from the following OpenZeppelin contracts:
-- `ERC20`: Standard ERC20 token implementation.
-- `Ownable`: Provides basic access control where an account (owner) can be granted exclusive access to specific functions.
-- `Pausable`: Allows the contract to be paused and unpaused by the owner.
-
-### Constants
-
-- `APY_BASE`: A constant used as the base for APY calculation, set to 10,000 (representing 100%).
+- Inherits from `ERC20` and `Ownable` contracts provided by OpenZeppelin.
+- Utilizes SafeMath for arithmetic operations to prevent overflows and underflows.
 
 ### State Variables
 
-- `stakingInfo`: A mapping that stores staking information for each staker, including the staked amount, the time of staking, and the APY.
+- `loans`: Mapping to track loan details for each borrower.
+- `collaterals`: Mapping to store collateral balances for each borrower.
+- `collateralRatio`: Required collateral ratio for loan issuance.
+- `liquidationThreshold`: Threshold for collateral liquidation.
 
 ### Structs
 
-- `StakingInfo`: A struct that holds staking details:
-  - `stakedAmount`: The amount of tokens staked.
-  - `createdAt`: The timestamp when tokens were staked.
-  - `apy`: The annual percentage yield.
+- `Loan`: Struct to represent loan details including collateral, loan amount, interest rate, start time, and loan status.
 
 ### Events
 
-- `Staked`: Emitted when a user stakes tokens.
-- `Unstaked`: Emitted when a user unstakes tokens.
+- `LoanTaken`: Emitted when a borrower takes a loan.
+- `LoanRepaid`: Emitted when a borrower repays a loan.
+- `LoanLiquidated`: Emitted when a loan is liquidated due to insufficient collateral.
 
 ## Functions
 
-### Constructor
-constructor(string memory name, string memory symbol) ERC20(name, symbol) {}
+- `takeLoan(uint256 loanAmount, uint256 interestRate) external payable`: Allows borrowers to take loans by providing collateral.
+- `repayLoan() external`: Allows borrowers to repay their loans.
+- `liquidateLoan(address borrower) external onlyOwner`: Allows the owner to liquidate a loan if collateral is insufficient.
+- `calculateInterest(address borrower) public view returns (uint256)`: Calculates the interest accrued on a loan.
+- `updateCollateralRatio(uint256 newRatio) external onlyOwner`: Updates the collateral ratio.
+- `updateLiquidationThreshold(uint256 newThreshold) external onlyOwner`: Updates the liquidation threshold.
 
-Initializes the token with a name and symbol.
+## Testing
 
-### Stake
+### Overview
 
-function stake(uint amount, uint apy) external whenNotPaused
+The test suite verifies the functionality of the LoanManagementToken contract using Mocha and Truffle.
 
+### Test Cases
 
-Allows a user to stake a specified amount of tokens with a given APY.
-
-- `amount`: The number of tokens to stake.
-- `apy`: The annual percentage yield.
-
-Requirements:
-- `amount` must be greater than zero.
-- `apy` must be greater than zero.
-- The contract must not be paused.
-
-### Unstake
-function unstake() external whenNotPaused
+1. **Loan Taking**: Ensures borrowers can take loans and receive tokens.
+2. **Loan Repayment**: Verifies borrowers can repay their loans and receive collateral back.
+3. **Loan Liquidation**: Tests the liquidation of loans by the owner if collateral is insufficient.
+4. **Collateral Sufficiency**: Checks that loans cannot be liquidated if collateral is sufficient.
 
 
-Allows a user to unstake their tokens and receive the staked amount plus accrued interest.
+## License
 
-Requirements:
-- The user must have staked tokens.
-- The contract must not be paused.
+The LoanManagementToken contract is licensed under the GPL-3.0 License.
 
-### Calculate Interest
-
-function calculateInterest(StakingInfo memory info) internal view returns (uint)
-
-
-Calculates the interest accrued for a given staking information.
-
-- `info`: The staking information of the user.
-
-### Pause
-
-function pause() external onlyOwner
-
-
-Pauses the staking and unstaking operations. Can only be called by the owner.
-
-### Unpause
-
-function unpause() external onlyOwner
-
-
-Unpauses the staking and unstaking operations. Can only be called by the owner.
-
----
-
-
- 
-# StakingToken Contract Tests  
-
-## Overview
-
-This documentation outlines the tests for the `StakingToken` contract, covering the main functionalities such as staking, unstaking, pausing, and unpausing operations.
-
-## Test Setup
-
-### Test Framework
-
-The tests are written using the Truffle framework and Mocha testing library.
-
-### Contracts
-
-- `StakingToken`: The main contract being tested.
-
-### Test Accounts
-
-- `owner`: The account deploying the contract and performing owner-only actions.
-- `signer2`: Another account interacting with the contract (e.g., staking and unstaking tokens).
-
-## Test Cases
-
-### Before Each Hook
-
-Sets up the contract instance and initial balances before each test.
-
-### Staking Tests
-
-#### Test: Stake Tokens
-
-```javascript
-it("should allow staking of tokens", async () => {
-    await stakingInstance.stake(amount, apy, { from: signer2 });
-    const stakedInfo = await stakingInstance.stakingInfo(signer2);
-    assert.equal(stakedInfo.stakedAmount.toString(), amount, "Staked amount is incorrect");
-    assert.equal(stakedInfo.apy.toString(), apy, "APY is incorrect");
-});
-```
-
-### Unstaking Tests
-
-#### Test: Unstake Tokens
-
-```javascript
-
-it("should allow unstaking of tokens and calculate interest", async () => {
-    await stakingInstance.stake(amount, apy, { from: signer2 });
-    await time.increase(time.duration.days(365)); // Simulate one year passing
-    await stakingInstance.unstake({ from: signer2 });
-    const balance = await stakingInstance.balanceOf(signer2);
-    const expectedBalance = new BN(amount).add(new BN(web3.utils.toWei("15", "ether")));
-    assert.equal(balance.toString(), expectedBalance.toString(), "Unstaked balance is incorrect");
-});
-```
-### Pause Tests
-
-
-#### Test: Pause Contract
-
-```javascript
-
-it("should pause the contract", async () => {
-    await stakingInstance.pause({ from: owner });
-    const paused = await stakingInstance.paused();
-    assert.equal(paused, true, "Contract is not paused");
-});
-```
-
-
-#### Test: Unpause Contract
-
-```javascript
-
-it("should unpause the contract", async () => {
-    await stakingInstance.pause({ from: owner });
-    await stakingInstance.unpause({ from: owner });
-    const paused = await stakingInstance.paused();
-    assert.equal(paused, false, "Contract is not unpaused");
-});
-
-```
-
-These tests ensure the StakingToken contract functions correctly for staking, unstaking, pausing, and unpausing operations. By running these tests, developers can verify the expected behavior and stability of the contract under various scenarios.

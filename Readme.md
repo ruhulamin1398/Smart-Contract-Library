@@ -31,6 +31,81 @@ Comprehensive tests have been implemented to ensure the functionality and reliab
 
 #### Get Started:
 
-To explore the project in detail and access the codebase, visit the project page [here](/Staking-token-contract/).
+To explore the project in detail and access the codebase, visit the project page [here](/Tokens/Staking-token-contract/).
 
+
+### 2. ARCoin     
+
+The ARCoin Staking Platform is an Ethereum-based system for staking ARCoin tokens and earning rewards. It includes smart contracts for staking functionality, tests for ensuring contract integrity, and contribution guidelines for community involvement. 
+
+#### Features
+
+- Staking: Users can stake ARCoin tokens with specified annual percentage yield (APY).
+- Rewards: Users earn rewards based on staking duration and APY.
+- Pause/Unpause: Contract owner can pause and unpause staking operations.
+- Testing: Comprehensive testing suite ensures contract functionality and reliability.
+- Contributions: Community contributions are welcome via issues and pull requests.
+
+#### Get Started:
+
+To explore the project in detail and access the codebase, visit the project page [here](/Tokens/AR-coin/).
+
+
+### 3. SuperShopRewards Token 
+
+The `SuperShopRewards` contract is an ERC20 token that represents rewards for the Super Shop platform. Users can stake, transfer, mint, and burn these tokens. Key features include:
+
+
+#### Features
+
+- Minting new tokens as rewards
+- Transfer of tokens between addresses
+- Approving and transferring tokens from one account to another
+- Burning tokens to reduce the total supply
+
+#### Test Coverage
+
+The contract is extensively tested with Mocha and Truffle to ensure the correctness of its functionalities:
+
+- Name, symbol, and decimals are verified
+- Initial supply and minting of new tokens are tested
+- Token transfers and approvals are validated
+- Token burning functionality is thoroughly tested
+
+#### Get Started:
+
+To explore the project in detail and access the codebase, visit the project page [here](/Tokens/Super-Shop-Rewards-token/).
+
+### 4. LoanManagementToken 
+
+The `LoanManagementToken` contract enables secure loan management with collateralization on Ethereum. Users can take loans, repay them with interest, and owners can liquidate loans if collateral falls below a specified threshold.
+
+#### Features
+
+- Loan Issuance: Borrowers can obtain loans by providing collateral, with the contract issuing tokens equivalent to the loan amount.
+- Loan Repayment: Borrowers can repay their loans with interest, reclaiming their collateral upon repayment.
+- Collateral Liquidation: Owners can liquidate loans if collateral falls below a defined threshold, ensuring loan security.
+- Customizable Parameters: Owners can adjust collateral ratios and liquidation thresholds as needed.
+
+#### Test Coverage
+
+- Loan Taking: Ensures borrowers can successfully take loans by providing collateral.
+- Loan Repayment: Verifies borrowers can repay their loans, reclaiming their collateral.
+- Loan Liquidation: Tests the liquidation of loans by the owner if collateral is insufficient.
+- Collateral Sufficiency: Checks that loans cannot be liquidated if collateral is sufficient.
+
+Explore the project in detail and access the codebase [here](/Tokens/LoanManagementToken/).
+
+
+
+# Contributing
+
+Explain how others can contribute to your project. Include guidelines for code style, pull request submission, and any other relevant information.
+
+1. Fork the repository
+1. Create a new branch (`git checkout -b feature`)
+1. Make your changes
+1. Commit your changes (`git commit -am 'Add feature'`)
+1. Push to the branch (`git push origin feature`)
+1. Create a new Pull Request
 Feel free to dive into the code, run the tests, and contribute to the project's development! If you have any questions or feedback, don't hesitate to reach out. Thank you for your interest in our project!
