@@ -39,6 +39,27 @@ contract ArrayContract{
 
 
 //Bytes array   
+// single bytes cannot be modified
+bytes3 public b1; 
+
+function setByeArray(bytes3 _b1) public returns(bool){
+
+    b1= _b1;
+    return true;
+}
+
+// Dynamic size bytes array
+bytes public bArray = "125abc" ;
+
+function pushElementBArray() public returns (bool){
+    bArray.push("a");
+    return true ;
+}
+
+function getElementBArray(uint _index) public view returns (bytes1){
+     
+    return bArray[_index] ;
+}
 
 
 
