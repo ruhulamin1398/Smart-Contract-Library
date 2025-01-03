@@ -1,3 +1,6 @@
 [submodule "Upgradeable-Smart-Contract"]
 	path = Upgradeable-Smart-Contract
 	url = https://github.com/ruhulamin1398/Upgradeable-Smart-Contract.git
+[submodule "Decentralized-Stablecoin--Pegged-to-USD"]
+	path = Decentralized-Stablecoin--Pegged-to-USD
+	url = https://github.com/ruhulamin1398/Decentralized-Stablecoin--Pegged-to-USD.git
